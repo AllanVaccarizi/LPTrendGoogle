@@ -427,8 +427,9 @@
                 });
                 
                 if (response.ok) {
-                    successMessage.style.display = 'block';
                     document.getElementById('contactForm').style.display = 'none';
+                    successMessage.classList.add('large');
+                    successMessage.style.display = 'block';
                 } else {
                     throw new Error('Erreur réseau');
                 }
