@@ -197,19 +197,6 @@
             color: #999;
         }
 
-        .phone-group {
-            display: flex;
-            gap: 10px;
-        }
-
-        .country-select {
-            flex: 0 0 120px;
-        }
-
-        .phone-input {
-            flex: 1;
-        }
-
         .submit-btn {
             width: 100%;
             background: linear-gradient(135deg, #FFD700, #B8860B);
@@ -405,26 +392,13 @@
                         </div>
                         
                         <div class="form-group">
-                            <label for="telephone">Téléphone</label>
-                            <div class="phone-group">
-                                <select id="countryCode" name="countryCode" class="country-select">
-                                    <option value="+33">🇫🇷 +33</option>
-                                    <option value="+32">🇧🇪 +32</option>
-                                    <option value="+41">🇨🇭 +41</option>
-                                    <option value="+1">🇺🇸 +1</option>
-                                    <option value="+44">🇬🇧 +44</option>
-                                    <option value="+49">🇩🇪 +49</option>
-                                    <option value="+34">🇪🇸 +34</option>
-                                    <option value="+39">🇮🇹 +39</option>
-                                    <option value="+31">🇳🇱 +31</option>
-                                </select>
-                                <input type="tel" id="telephone" name="telephone" class="phone-input" placeholder="6 12 34 56 78">
-                            </div>
+                            <label for="telephone">Téléphone <span class="required">*</span></label>
+                            <input type="tel" id="telephone" name="telephone" required placeholder="06 12 34 56 78">
                         </div>
                         
                         <div class="form-group">
                             <label for="website">URL du site internet</label>
-                            <input type="url" id="website" name="website" placeholder="https://votresite.com">
+                            <input type="text" id="website" name="website" placeholder="https://votresite.com">
                         </div>
                         
                         <button type="submit" class="submit-btn">
@@ -466,8 +440,7 @@
                 nom: document.getElementById('nom').value,
                 entreprise: document.getElementById('entreprise').value,
                 email: document.getElementById('email').value,
-                telephone: document.getElementById('telephone').value ? 
-                    document.getElementById('countryCode').value + document.getElementById('telephone').value : '',
+                telephone: document.getElementById('telephone').value,
                 website: document.getElementById('website').value,
                 automation: 'Trends Google',
                 timestamp: new Date().toISOString(),
