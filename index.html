@@ -145,6 +145,7 @@
             border-radius: 20px;
             padding: 40px;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            transition: all 0.5s ease;
         }
 
         .form-title {
@@ -196,6 +197,19 @@
             color: #999;
         }
 
+        .phone-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .country-select {
+            flex: 0 0 120px;
+        }
+
+        .phone-input {
+            flex: 1;
+        }
+
         .submit-btn {
             width: 100%;
             background: linear-gradient(135deg, #FFD700, #B8860B);
@@ -230,11 +244,13 @@
             background: rgba(34, 197, 94, 0.1);
             border: 1px solid rgba(34, 197, 94, 0.3);
             color: #22c55e;
-            padding: 15px;
+            padding: 40px;
             border-radius: 8px;
-            margin-top: 20px;
             text-align: center;
+            font-size: 1.2rem;
+            font-weight: 500;
             display: none;
+            animation: fadeInUp 0.6s ease;
         }
 
         /* Error message */
@@ -247,6 +263,31 @@
             margin-top: 20px;
             text-align: center;
             display: none;
+        }
+
+        /* Animation pour le message de succès */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Classes pour masquer/afficher les éléments */
+        .hidden {
+            display: none !important;
+        }
+
+        .form-content {
+            transition: opacity 0.3s ease;
+        }
+
+        .form-content.fade-out {
+            opacity: 0;
         }
 
         /* Responsive */
@@ -338,52 +379,67 @@
 
         <section class="right-section">
             <div class="form-container">
-                <h2 class="form-title">Commencez maintenant</h2>
-                <p class="form-subtitle">Découvrez comment automatiser vos tâches</p>
+                <div id="formContent" class="form-content">
+                    <h2 class="form-title">Commencez maintenant</h2>
+                    <p class="form-subtitle">Découvrez comment automatiser vos tâches</p>
+                    
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="prenom">Prénom <span class="required">*</span></label>
+                            <input type="text" id="prenom" name="prenom" required placeholder="Votre prénom">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="nom">Nom <span class="required">*</span></label>
+                            <input type="text" id="nom" name="nom" required placeholder="Votre nom">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="entreprise">Entreprise <span class="required">*</span></label>
+                            <input type="text" id="entreprise" name="entreprise" required placeholder="Nom de votre entreprise">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Mail professionnel <span class="required">*</span></label>
+                            <input type="email" id="email" name="email" required placeholder="votre.email@entreprise.com">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="telephone">Téléphone</label>
+                            <div class="phone-group">
+                                <select id="countryCode" name="countryCode" class="country-select">
+                                    <option value="+33">🇫🇷 +33</option>
+                                    <option value="+32">🇧🇪 +32</option>
+                                    <option value="+41">🇨🇭 +41</option>
+                                    <option value="+1">🇺🇸 +1</option>
+                                    <option value="+44">🇬🇧 +44</option>
+                                    <option value="+49">🇩🇪 +49</option>
+                                    <option value="+34">🇪🇸 +34</option>
+                                    <option value="+39">🇮🇹 +39</option>
+                                    <option value="+31">🇳🇱 +31</option>
+                                </select>
+                                <input type="tel" id="telephone" name="telephone" class="phone-input" placeholder="6 12 34 56 78">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="website">URL du site internet</label>
+                            <input type="url" id="website" name="website" placeholder="https://votresite.com">
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">
+                            💡 Démarrer
+                        </button>
+                        
+                        <div id="errorMessage" class="error-message">
+                            Une erreur s'est produite. Veuillez réessayer.
+                        </div>
+                    </form>
+                </div>
                 
-                <form id="contactForm">
-                    <div class="form-group">
-                        <label for="prenom">Prénom <span class="required">*</span></label>
-                        <input type="text" id="prenom" name="prenom" required placeholder="Votre prénom">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="nom">Nom <span class="required">*</span></label>
-                        <input type="text" id="nom" name="nom" required placeholder="Votre nom">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="entreprise">Entreprise <span class="required">*</span></label>
-                        <input type="text" id="entreprise" name="entreprise" required placeholder="Nom de votre entreprise">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="email">Mail professionnel <span class="required">*</span></label>
-                        <input type="email" id="email" name="email" required placeholder="votre.email@entreprise.com">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="telephone">Téléphone <span class="required">*</span></label>
-                        <input type="tel" id="telephone" name="telephone" required placeholder="0612345678">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="website">URL du site internet</label>
-                        <input type="text" id="website" name="website" placeholder="votresite.com">
-                    </div>
-                    
-                    <button type="submit" class="submit-btn">
-                        💡 Démarrer
-                    </button>
-                    
-                    <div id="successMessage" class="success-message">
-                        Merci ! Vous allez recevoir le workflow par mail d'ici peu !
-                    </div>
-                    
-                    <div id="errorMessage" class="error-message">
-                        Une erreur s'est produite. Veuillez réessayer.
-                    </div>
-                </form>
+                <div id="successMessage" class="success-message">
+                    ✅ Merci ! Vous allez recevoir le workflow par mail d'ici peu !
+                </div>
             </div>
         </section>
     </main>
@@ -395,9 +451,9 @@
             const submitBtn = document.querySelector('.submit-btn');
             const successMessage = document.getElementById('successMessage');
             const errorMessage = document.getElementById('errorMessage');
+            const formContent = document.getElementById('formContent');
             
             // Reset messages
-            successMessage.style.display = 'none';
             errorMessage.style.display = 'none';
             
             // Disable button and show loading
@@ -410,7 +466,8 @@
                 nom: document.getElementById('nom').value,
                 entreprise: document.getElementById('entreprise').value,
                 email: document.getElementById('email').value,
-                telephone: document.getElementById('telephone').value,
+                telephone: document.getElementById('telephone').value ? 
+                    document.getElementById('countryCode').value + document.getElementById('telephone').value : '',
                 website: document.getElementById('website').value,
                 automation: 'Trends Google',
                 timestamp: new Date().toISOString(),
@@ -427,19 +484,20 @@
                 });
                 
                 if (response.ok) {
-                    // Masquer le formulaire
-                    document.getElementById('contactForm').style.display = 'none';
-                    // Afficher le message de succès avec la classe large
-                    const successMsg = document.getElementById('successMessage');
-                    successMsg.classList.add('large');
-                    successMsg.style.display = 'block';
+                    // Masquer le formulaire avec une animation
+                    formContent.classList.add('fade-out');
+                    
+                    setTimeout(() => {
+                        formContent.classList.add('hidden');
+                        successMessage.style.display = 'block';
+                    }, 300);
                 } else {
                     throw new Error('Erreur réseau');
                 }
             } catch (error) {
                 console.error('Error:', error);
                 errorMessage.style.display = 'block';
-            } finally {
+                
                 // Re-enable button
                 submitBtn.disabled = false;
                 submitBtn.innerHTML = '💡 Démarrer';
